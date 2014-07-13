@@ -1,4 +1,4 @@
-var extensionID = "mmcgemmmiggnebcijjkjnckdlbnlfnnc";
+var extensionID = "cghfecgpjjdediiljjckdjjfndlkoebh";
 var holder = document.getElementById("bookmark-holder");
 var searchBookmark = document.getElementById("search");
 var bookmarks;
@@ -60,7 +60,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse){
 
 });
 
-chrome.runtime.sendMessage(ID, "get", {}, function (res) {
+chrome.runtime.sendMessage(extensionID, "get", {}, function (res) {
   console.log(res);
 });
 
