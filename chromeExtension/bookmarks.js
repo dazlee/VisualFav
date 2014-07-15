@@ -25,13 +25,42 @@ function dumpNode(bookmarkNode, query) {
     }
     var content;
     if (bookmarkNode.url) {
-      content = document.createElement('span');
+      content = document.createElement('div');
       content.setAttribute("class", "bookmark");
+      content.setAttribute("draggable", "true");
+      content.setAttribute("ondragstart", "drag(event)")
 
       var anchor = document.createElement('a');
+      anchor.setAttribute("class", "bookmarkurl");
 	    anchor.setAttribute('href', bookmarkNode.url);
       anchor.innerHTML = bookmarkNode.title;
-      content.appendChild(anchor)
+
+      var trashCan = document.createElement('a');
+      trashCan.setAttribute("class", "trashcan hidden");
+      trashCan.setAttribute("url", "#");
+
+      content.appendChild(anchor);
+      content.appendChild(trashCan);
+
+      content.onmouseover = function () {
+        var that = this;
+        var trashcan = that.getElementsByClassName("trashcan");
+        trashcan[0].className = "trashcan";
+      }
+      content.onmouseleave = function () {
+        var that = this;
+        var trashcan = that.getElementsByClassName("trashcan");
+        trashcan[0].className = "trashcan hidden";
+      }
+      trashCan.onmouseover = function () {
+        var that = this;
+      }
+      trashCan.onclick = function () {
+        var that = this;
+        chrome.runtime.sendMessage(extensionID, {method: "remove", id: bookmarkNode.id}, {}, function (res) {
+          content.parentNode.removeChild(content);
+        });
+      }
 	  } else {
       content = document.createElement('div');
       content.setAttribute("class", "folder");
@@ -60,7 +89,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse){
 
 });
 
-chrome.runtime.sendMessage(extensionID, "get", {}, function (res) {
+chrome.runtime.sendMessage(extensionID, {method: "get"}, {}, function (res) {
   console.log(res);
 });
 

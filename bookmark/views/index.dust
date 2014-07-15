@@ -1,6 +1,7 @@
 My Bookmarks!
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="javascripts/lib.js"></script>
 <div>Search Bookmarks: <input id="search"></div>
 <div id="bookmark-holder">
 </div>

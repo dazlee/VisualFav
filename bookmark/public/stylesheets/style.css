@@ -30,7 +30,7 @@ a {
 	text-decoration: none;
 }
 
-.bookmark a:before{
+.bookmark a.bookmarkurl:before{
 	content: "";
 	position: absolute;
 	top: 0;
@@ -43,4 +43,27 @@ a {
 .bookmark:hover{
 	background-color: #FFFFFF;
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.trashcan{
+	background-image: url(/images/trashCan.png);
+	background-size: 15px;
+	background-repeat: no-repeat;
+	opacity: 0.5;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	display: block;
+	right: 0px;
+	bottom: 0px;
+	padding: 0px 2px 2px 0px;
+	z-index: 2;
+}
+.trashcan:hover {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.hidden{
+	display: none;
 }
